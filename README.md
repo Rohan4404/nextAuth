@@ -13,6 +13,9 @@ Once the server is running, open your browser and go to:    "http://localhost:30
 Step 4: Sign in with Google
 On the login page, you’ll see an option to sign in with Google. Simply click the Sign in with Google button, and you will be signed in with your Google account.
 
+step 5: You will reach
+on this url http://localhost:3000/dashboard
+
 
 Step 5: Troubleshooting Google Login
 If you are unable to sign in with Google, follow these steps to fix the issue:
