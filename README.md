@@ -17,7 +17,7 @@ step 5: You will reach
 on this url http://localhost:3000/dashboard
 
 
-Step 5: Troubleshooting Google Login
+Step 6: Troubleshooting Google Login
 If you are unable to sign in with Google, follow these steps to fix the issue:
 
 Open the .env.local file in your project.
