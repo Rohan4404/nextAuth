@@ -1,5 +1,5 @@
 Step 1: Clone the repository
-Clone the repository to your local machine by downloading the zip file, or using the command:    " git clone <repository_url> "
+Clone the repository to your local machine by downloading the zip file, or using the command:    " git clone  "https://github.com/Rohan4404/nextAuth.git"  "
 
 Step 2: Install dependencies and run the project
 Open the terminal in your project directory.
