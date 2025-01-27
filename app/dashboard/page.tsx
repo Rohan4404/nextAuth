@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { setSession, clearSession } from "@/lib/redux/sessionSlice";
@@ -16,6 +16,7 @@ export default function DashboardPage() {
   );
 
   useEffect(() => {
+    // Handle session state updates
     if (status === "authenticated" && session?.user) {
       dispatch(setSession(session.user));
     } else if (status === "unauthenticated") {
@@ -24,18 +25,22 @@ export default function DashboardPage() {
     }
   }, [status, session, dispatch, router]);
 
-  const handleLogout = () => {
-    dispatch(clearSession());
-    router.push("/login");
-  };
-
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        Loading...
+      </div>
+    );
   }
 
   if (!isAuthenticated) {
     return null;
   }
+
+  const handleLogout = () => {
+    dispatch(clearSession());
+    signOut({ callbackUrl: "/login" }); // Ensures proper logout and redirect
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
@@ -43,11 +48,9 @@ export default function DashboardPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-light-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
         <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
           <div className="max-w-md mx-auto">
-            <div>
-              <h1 className="text-2xl font-semibold">
-                Welcome to your Dashboard
-              </h1>
-            </div>
+            <h1 className="text-2xl font-semibold mb-6">
+              Welcome to your Dashboard
+            </h1>
             <div className="divide-y divide-gray-200">
               <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                 <p>You are logged in as:</p>
@@ -84,7 +87,7 @@ export default function DashboardPage() {
                     </span>
                     <p className="ml-2">
                       <span className="font-semibold">Email:</span>{" "}
-                      {user?.email}
+                      {user?.email ?? "No email provided"}
                     </p>
                   </li>
                 </ul>

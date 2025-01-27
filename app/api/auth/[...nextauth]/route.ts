@@ -10,15 +10,15 @@ const handler = NextAuth({
         email: {
           label: "Email",
           type: "text",
-          placeholder: "jsmith@example.com",
+          placeholder: "bidinn@noida.com",
         },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials: any): Promise<any> {
-        // This is where you would typically check against your database
+        debugger;
         if (
-          credentials?.email === "user@example.com" &&
-          credentials?.password === "password"
+          credentials?.email === "bidinn@noida.com" &&
+          credentials?.password === "bidinn@noida"
         ) {
           return { id: "1", name: "Bidinn", email: "bidinn@noida.com" };
         }
